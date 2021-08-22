@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Bubble</title>
+</head>
+<body>
+    <h2>Event Bubble vai</h2>
+    <section id="section-container">
+        <h4>Bubble vai list</h4>
+        <ul id="list-container">
+            <li class="item">Lorem, ipsum.</li>
+            <li id="second-item" class="item">Facilis, sed.</li>
+            <li class="item">Aliquam, ratione.</li>
+            <li class="item">Voluptas, provident.</li>
+            <li class="item">Nobis, est!</li>
+            <li class="item">Cupiditate, maiores.</li>
+        </ul>
+    </section>
+
+    <script>
+        // bubbling or bubble event handle
+        document.getElementById('second-item').addEventListener('click', function(){
+            console.log('ul item clicked 1');
+            // it will stop immediately
+            event.stopImmediatePropagation();
+        })
+        document.getElementById('second-item').addEventListener('click', function(){
+            console.log('ul item clicked 2');
+            // it will stop but same level will print
+            event.stopPropagation();
+            
+        })
+        document.getElementById('second-item').addEventListener('click', function(){
+            // it will allow all the events if stop propagation is not applied.
+            console.log('ul item clicked 3');
+            
+        })
+        // ul
+        document.getElementById('list-container').addEventListener('click', function(){
+            console.log('ul clicked');
+        })
+        // section
+        document.getElementById('section-container').addEventListener('click', function(){
+            console.log('section clicked');
+        })
+    </script>
+</body>
+</html>
